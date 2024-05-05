@@ -34,14 +34,14 @@ declare -A gotools
 gotools["gf"]="go install -v github.com/tomnomnom/gf@latest"
 gotools["brutespray"]="go install -v github.com/x90skysn3k/brutespray@latest"
 gotools["qsreplace"]="go install -v github.com/tomnomnom/qsreplace@latest"
-gotools["amass"]="go install -v github.com/owasp-amass/amass/v3/...@master"
+gotools["amass"]="go install -v github.com/owasp-amass/amass/v4/...@master"
 gotools["ffuf"]="go install -v github.com/ffuf/ffuf/v2@latest"
 gotools["github-subdomains"]="go install -v github.com/gwen001/github-subdomains@latest"
 gotools["gitlab-subdomains"]="go install -v github.com/gwen001/gitlab-subdomains@latest"
 gotools["nuclei"]="go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest"
 gotools["anew"]="go install -v github.com/tomnomnom/anew@latest"
 gotools["notify"]="go install -v github.com/projectdiscovery/notify/cmd/notify@latest"
-gotools["unfurl"]="go install -v github.com/tomnomnom/unfurl@v0.3.0"
+gotools["unfurl"]="go install -v github.com/tomnomnom/unfurl@latest"
 gotools["httpx"]="go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest"
 gotools["github-endpoints"]="go install -v github.com/gwen001/github-endpoints@latest"
 gotools["dnsx"]="go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest"
@@ -439,7 +439,8 @@ install_tools
 
 printf "${bblue}\n Running: Downloading required files ${reset}\n\n"
 ## Downloads
-[[ ! -f ~/.config/amass/config.ini ]] && wget -q -O ~/.config/amass/config.ini https://raw.githubusercontent.com/owasp-amass/amass/master/examples/config.ini
+[[ ! -f ~/.config/amass/config.yaml ]] && && wget -q -O ~/.config/amass/config.yaml https://raw.githubusercontent.com/owasp-amass/amass/master/examples/config.yaml
+[[ ! -f ~/.config/amass/datasources.yaml ]] && && wget -q -O ~/.config/amass/datasources.yaml https://raw.githubusercontent.com/owasp-amass/amass/master/examples/datasources.yaml
 [[ ! -f ~/.config/notify/provider-config.yaml ]] && wget -q -O ~/.config/notify/provider-config.yaml https://gist.githubusercontent.com/six2dez/23a996bca189a11e88251367e6583053/raw
 #wget -q -O - https://raw.githubusercontent.com/devanshbatham/ParamSpider/master/gf_profiles/potential.json > ~/.gf/potential.json - Removed
 wget -q -O - https://raw.githubusercontent.com/m4ll0k/Bug-Bounty-Toolz/master/getjswords.py >${tools}/getjswords.py
@@ -522,6 +523,6 @@ eval strip -s "$HOME"/go/bin/* $DEBUG_STD
 eval $SUDO cp "$HOME"/go/bin/* /usr/local/bin/ $DEBUG_STD
 
 
-printf "${yellow} Remember set your api keys:\n - amass (~/.config/amass/config.ini)\n - subfinder (~/.config/subfinder/provider-config.yaml)\n - GitHub (~/Tools/.github_tokens)\n - GitLab (~/Tools/.gitlab_tokens)\n - SSRF Server (COLLAB_SERVER in reconftw.cfg or env var) \n - Waymore ( ~/.config/waymore/config.yml) \n - Blind XSS Server (XSS_SERVER in reconftw.cfg or env var) \n - notify (~/.config/notify/provider-config.yaml) \n - WHOISXML API (WHOISXML_API in reconftw.cfg or env var)\n\n${reset}"
+printf "${yellow} Remember set your api keys:\n - amass (~/.config/amass/datasources.yaml)\n - subfinder (~/.config/subfinder/provider-config.yaml)\n - GitHub (~/Tools/.github_tokens)\n - GitLab (~/Tools/.gitlab_tokens)\n - SSRF Server (COLLAB_SERVER in reconftw.cfg or env var) \n - Waymore ( ~/.config/waymore/config.yml) \n - Blind XSS Server (XSS_SERVER in reconftw.cfg or env var) \n - notify (~/.config/notify/provider-config.yaml) \n - WHOISXML API (WHOISXML_API in reconftw.cfg or env var)\n\n${reset}"
 printf "${bgreen} Finished!${reset}\n\n"
 printf "\n\n${bgreen}#######################################################################${reset}\n"
